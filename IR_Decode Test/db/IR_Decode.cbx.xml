@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="IR_Decode">
+		<CBX_INST_ENTRY INSTANCE_NAME="|IR_Decode|CONVERTER:Conv|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_kbm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|IR_Decode|CONVERTER:Conv|lpm_divide:Mod1" CBX_FILE_NAME="lpm_divide_a5m.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|IR_Decode|CONVERTER:Conv|lpm_divide:Div1" CBX_FILE_NAME="lpm_divide_kbm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|IR_Decode|CONVERTER:Conv|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_a5m.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|IR_Decode|CONVERTER:Conv|lpm_divide:Mod2" CBX_FILE_NAME="lpm_divide_a5m.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

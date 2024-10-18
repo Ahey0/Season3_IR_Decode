@@ -1,0 +1,69 @@
+Library Ieee;
+Use Ieee.Std_Logic_1164.All;
+Use Ieee.Std_Logic_Arith.All;
+Entity IR_Decode is
+      Port(
+		      INP   : In  Std_logic_vector(7 downto 0 ) ;
+				Load  : In  Std_logic                     ;
+				HOL   : In  Std_logic                     ;
+				LEDO  : Out Std_logic_vector(7 downto 0 ) ;
+				Dig1  : Out Std_logic_vector(6 downto 0 ) ;
+				Dig2  : Out Std_logic_vector(6 downto 0 ) ;
+				Dig3  : Out Std_logic_vector(6 downto 0 ) ;
+				Dig4  : Out Std_logic_vector(6 downto 0 ) ;
+				Dig5  : Out Std_logic_vector(6 downto 0 ) ;
+				Clk   : In  Std_logic   
+			  );
+End Entity;
+Architecture IR_Decode_Behave Of IR_Decode is
+Component Clock_controll_50MHZ_T_50HZ is 
+  port(
+        clkin   : in  std_logic     ;
+        EN      : in  std_logic     ;
+        reset   : in  std_logic     ;
+        clkout  : out std_logic     
+       );
+End Component;
+Component  CONVERTER is
+port(
+     INS    : in  std_logic_vector(15 downto 0)  ;
+	  datadig1 : out integer  range 0 to 9          ;
+	  datadig2 : out integer  range 0 to 9          ;
+	  datadig3 : out integer  range 0 to 9          ;
+	  datadig4 : out integer  range 0 to 9          ;
+	  datadig5 : out integer  range 0 to 9          
+	  );
+End Component;
+Component Decoder3 is
+ port(
+      sel : in  std_logic_vector(2 downto 0) ;
+      o   : out std_logic_vector(7 downto 0) 
+      );
+End Component;
+Component  IR_16 is
+port(
+     inir  : in   std_logic_vector(15 downto 0);
+	  outir : out  std_logic_vector(15 downto 0);
+	  clk   : in   std_logic                    ;
+	  load  : in   std_logic                     
+	  );
+End Component;
+Component Disp_CA is
+  Port(
+       datadig1 : in  integer  range 0 to 9          ;
+       datadig2 : in  integer  range 0 to 9          ;
+       datadig3 : in  integer  range 0 to 9          ;
+    	 datadig4 : in  integer  range 0 to 9          ;
+       datadig5 : in  integer  range 0 to 9          ;
+       Clk      : in  std_logic                      ;
+       dig1     : out std_logic_vector(6 downto 0)   ;
+       dig2     : out std_logic_vector(6 downto 0)   ;
+    	 dig3     : out std_logic_vector(6 downto 0)   ;
+       dig4     : out std_logic_vector(6 downto 0)   ;
+       dig5     : out std_logic_vector(6 downto 0)   
+       );  
+End Component;
+Signal LTemp_Data,HTemp_Data                        : Std_logic_vector(7 Downto 0):="0000000"   ;
+Signal datadig1,datadig2,datadig3,datadig4,datadig5 : integer  range 0 to 9                     ;
+Signal Clk0    : Std_logic                    ;
+Signal IR_data : Std_logic_vector(15 downto 0):="0000000000000000";
